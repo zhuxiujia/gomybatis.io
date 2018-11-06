@@ -1,7 +1,7 @@
 # 限制和规则
 
 # 定义mapper
-<pre>
+```
 type ActivityMapperImpl struct {
 	SelectAll         func(result *[]model.Activity) error
 	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]model.Activity) error `mapperParams:"name,startTime,endTime,page,size"`
@@ -9,7 +9,7 @@ type ActivityMapperImpl struct {
 	Insert            func(arg model.Activity, result *int64) error
 	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                                  `mapperParams:"name,startTime,endTime"`
 }
-</pre>
+```
 
 > 包含一系列func的struct 为mapper定义文件,其中 func 返回值必须为error。当最后一个参数为指针时，表示是返回值类型其他默认为参数，多个参数请定义tag注解  `mapperParams:"***"`,逗号隔开，参数为你的xml中sql出现的‘#{***}’字段
 
