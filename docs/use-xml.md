@@ -54,8 +54,7 @@ xml文件案例:
 <pre>
 import (
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/xorm"
-	"github.com/zhuxiujia/GoMybatis"
+	"github.com/zhuxiujia/GoMybatis/lib/github.com/go-xorm/xorm"
 	)
 
 func main() {

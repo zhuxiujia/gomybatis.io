@@ -3,5 +3,4 @@
 <pre>
 go get github.com/zhuxiujia/GoMybatis
 go get github.com/go-sql-driver/mysql
-go get github.com/go-xorm/xorm
 </pre>
