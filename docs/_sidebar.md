@@ -2,4 +2,4 @@
 - [安装-Installation](/getting-started)
 - [使用xml增删改查 Use xml file](/use-xml)
 - 文档document
-  - [实现原理](/getting-started)
+  - [实现原理](/detail)
