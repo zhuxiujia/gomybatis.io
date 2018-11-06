@@ -1,5 +1,6 @@
 - [首页-Home](/)
 - [安装-Installation](/getting-started)
 - [使用xml增删改查 Use xml file](/use-xml)
+- [规则和限制](/rule)
 - 文档document
   - [实现原理](/detail)
