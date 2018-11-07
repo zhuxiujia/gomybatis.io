@@ -1,18 +1,30 @@
 mapper.go 文件案例
-<pre>
-//属性必须大写,GoBatis将会使用反射取得字段名称和值
-type SelectByConditionArg struct {
-	Name      string
-	StartTime time.Time
-	EndTime   time.Time
-	Page      int
-	Size      int
+# 使用教程,代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
+```
+go get github.com/zhuxiujia/GoMybatis
+go get github.com/go-sql-driver/mysql
+```
+mapper.go 文件案例
+```
+//定义mapper文件的接口和结构体
+type ExampleActivityMapper interface {
+	SelectAll(result *[]Activity) error
+	SelectByCondition(Name string, StartTime time.Time, EndTime time.Time, Page int, Size int, result *[]Activity) error
+	UpdateById(arg Activity, result *int64) error
+	Insert(arg Activity, result *int64) error
+	CountByCondition(name string, startTime time.Time, endTime time.Time, result *int) error
 }
-type ActivityMapperImpl struct {
-  //mapper.go文件 函数必须为2个参数（第一个为自定义结构体参数（属性必须大写），第二个为指针类型的返回数据） error 为返回错误
-	SelectByCondition func(arg SelectByConditionArg, result *[]model.Activity) error
+//定义mapper文件的接口和结构体，也可以只定义结构体就行
+//mapper.go文件 函数必须为2个参数（第一个为自定义结构体参数（属性必须大写），第二个为指针类型的返回数据） error 为返回错误
+type ExampleActivityMapperImpl struct {
+	ExampleActivityMapper
+	SelectAll         func(result *[]Activity) error
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(arg Activity, result *int64) error
+	Insert            func(arg Activity, result *int64) error
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                            `mapperParams:"name,startTime,endTime"`
 }
-</pre>
+```
 
 xml文件案例:
 ```xml
@@ -28,50 +40,48 @@ xml文件案例:
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
     </resultMap>
-    <!-- SelectByCondition func(arg SelectByConditionArg, result *[]model.Activity) error -->
-    <!-- 后台查询产品 -->
-    <select id="SelectByCondition" resultMap="BaseResultMap">
-        select
-        <trim prefix="" suffix="" suffixOverrides=",">
-            <if test="Name != ''">name,</if>
-        </trim>
-        from biz_activity where delete_flag=1
-        <if test="Name != ''">
-            and name like concat('%',#{Name},'%')
-        </if>
-        <if test="StartTime != 0">
-            and create_time >= #{StartTime}
-        </if>
-        <if test="EndTime != 0">
-            and create_time &lt;= #{EndTime}
-        </if>
-        order by create_time desc
-        <if test="Page != 0 and Size != 0">limit #{Page}, #{Size}</if>
+    <!--SelectAll(result *[]Activity)error-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from biz_activity where delete_flag=1 order by create_time desc
     </select>
 </mapper>
 ```
-在服务层实际使用mapper
-<pre>
+实际使用mapper
+```
 import (
 	_ "github.com/go-sql-driver/mysql"
+	"testing"
+	"time"
 	"github.com/zhuxiujia/GoMybatis/lib/github.com/go-xorm/xorm"
-	)
-
+	"os"
+	"fmt"
+	"io/ioutil"
+	"github.com/zhuxiujia/GoMybatis"
+)
 func main() {
-  var mapper ActivityMapperImpl
-  engine, dbError := xorm.NewEngine("mysql", "")
-	if dbError != nil {
-		fmt.Println(dbError)
-		return
-	}
-  engine.LogMode(true)
-  UseProxyMapper(&mapper, engine.DB)
-  //查询
-  var r []model.Activity //model.Activity 此处应改为你自己的数据库模型类型
-  var err = GoMybatis.SelectByCondition(SelectByConditionArg{
-		Name: `rs`,
-	}, &r)
-	fmt.Println(err)
-	fmt.Println(r)
+  var err error
+  	//mysql链接格式为         用户名:密码@(数据库链接地址:端口)/数据库名称   例如root:123456@(***.mysql.rds.aliyuncs.com:3306)/test
+  	engine, err := xorm.NewEngine("mysql", "*?charset=utf8&parseTime=True&loc=Local") //此处请按格式填写你的mysql链接，这里用*号代替
+  	if err != nil {
+  		panic(err.Error())
+  	}
+
+  	file, err := os.Open("Example_ActivityMapper.xml")
+  	if err != nil {
+  		panic(err)
+  	}
+  	defer file.Close()
+
+  	bytes, _ := ioutil.ReadAll(file)
+  	var exampleActivityMapperImpl ExampleActivityMapperImpl
+  	//设置对应的mapper xml文件
+  	GoMybatis.UseProxyMapper(&exampleActivityMapperImpl, bytes, engine)
+
+  	//使用mapper
+  	var result []Activity
+  	exampleActivityMapperImpl.SelectAll(&result)
+
+  	fmt.Println(result)
 }
-</pre>
+```
+
