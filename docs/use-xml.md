@@ -52,7 +52,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"testing"
 	"time"
-	"github.com/zhuxiujia/GoMybatis/lib/github.com/go-xorm/xorm"
 	"os"
 	"fmt"
 	"io/ioutil"
@@ -61,7 +60,7 @@ import (
 func main() {
   var err error
   	//mysql链接格式为         用户名:密码@(数据库链接地址:端口)/数据库名称   例如root:123456@(***.mysql.rds.aliyuncs.com:3306)/test
-  	engine, err := xorm.NewEngine("mysql", "*?charset=utf8&parseTime=True&loc=Local") //此处请按格式填写你的mysql链接，这里用*号代替
+  	engine, err := GoMybatis.Open("mysql", "*?charset=utf8&parseTime=True&loc=Local") //此处请按格式填写你的mysql链接，这里用*号代替
   	if err != nil {
   		panic(err.Error())
   	}
