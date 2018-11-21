@@ -3,11 +3,13 @@
 # 定义mapper
 ```
 type ActivityMapperImpl struct {
-	SelectAll         func(result *[]model.Activity) error
-	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]model.Activity) error `mapperParams:"name,startTime,endTime,page,size"`
-	UpdateById        func(arg model.Activity, result *int64) error
-	Insert            func(arg model.Activity, result *int64) error
-	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                                  `mapperParams:"name,startTime,endTime"`
+//定义mapper文件的接口和结构体，也可以只定义结构体就行
+//mapper.go文件 函数参数（自定义结构体参数（属性必须大写），为指针类型的返回数据,*GoMybatis.Session作为该sql执行的session） error 为返回错误
+	SelectAll         func(result *[]Activity) error
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(session *GoMybatis.Session, arg Activity, result *int64) error //只要参数中包含有*GoMybatis.Session的类型，框架默认使用传入的session对象，用于自定义事务
+	Insert            func(arg Activity, result *int64) error
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                            `mapperParams:"name,startTime,endTime"`
 }
 ```
 
