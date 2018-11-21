@@ -2,7 +2,7 @@
 > Github地址 https://github.com/zhuxiujia/GoMybatis
 
 > 文档地址 https://zhuxiujia.github.io/gomybatis.io/
-![Image text](https://github.com/zhuxiujia/gomybatis.io/blob/master/docs/logo.png)
+![Image text](https://github.com/zhuxiujia/gomybatis.io/raw/master/docs/logo.png)
 GoMybatis 是根据java版 Mybatis3 的实现,基于Go标准库sql驱动和govaluate表达式及反射实现。
 GoMybatis 内部在初始化时反射分析mapper xml生成golang的func代码，默认支持绝大部分的Java版的mybatis标签和规范
 
