@@ -163,8 +163,9 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	GoMybatis.UseProxyMapperByEngine(&exampleActivityMapperImpl, bytes, engine)
 	return exampleActivityMapperImpl
 }
+```
 
-
+```
 //本地GoMybatis使用例子
 func Test_main(t *testing.T) {
 	//初始化mapper文件
@@ -177,7 +178,9 @@ func Test_main(t *testing.T) {
 	}
 	fmt.Println("result=", result)
 }
+```
 
+```
 //本地事务使用例子
 func Test_local_Transation(t *testing.T) {
 	//初始化mapper文件
@@ -198,8 +201,10 @@ func Test_local_Transation(t *testing.T) {
 	session.Commit() //提交事务
 	session.Close()  //关闭事务
 }
+```
 
 
+```
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
 func Test_Remote_Transation(t *testing.T) {
 
