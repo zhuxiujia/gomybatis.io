@@ -1,6 +1,6 @@
-# 实现原理
-
-## 当我们定义mapper
+# 事务原理
+![Image text](https://github.com/zhuxiujia/gomybatis.io/raw/master/docs/tx.png)
+## mapper反射原理
 <pre>
 type ActivityMapperImpl struct {
 	SelectAll         func(result *[]model.Activity) error
