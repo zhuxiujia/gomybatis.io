@@ -171,7 +171,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 }
 ```
 
-<span id="1">使用</span>
+### <span id="1">使用</span>
 
 ```
 //本地GoMybatis使用例子
@@ -188,7 +188,7 @@ func Test_main(t *testing.T) {
 }
 ```
 
-<span id="2">本地事务</span>
+### <span id="2">本地事务</span>
 
 ```
 //本地事务使用例子
@@ -214,7 +214,7 @@ func Test_local_Transation(t *testing.T) {
 ```
 
 
-<span id="3">远程事务</span>
+### <span id="3">远程事务</span>
 
 ```
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
