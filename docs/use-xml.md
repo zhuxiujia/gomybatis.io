@@ -180,6 +180,7 @@ func Test_main(t *testing.T) {
 }
 ```
 * [本地事务示例](#2)
+
 ```
 //本地事务使用例子
 func Test_local_Transation(t *testing.T) {
@@ -202,7 +203,8 @@ func Test_local_Transation(t *testing.T) {
 	session.Close()  //关闭事务
 }
 ```
-* [本地事务示例](#3)
+* [远程事务示例](#3)
+
 ```
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
 func Test_Remote_Transation(t *testing.T) {
