@@ -1,11 +1,9 @@
 mapper.go 文件案例
 # 使用教程,代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
-[-使用xml](#1)
 
-[-本地事务](#2)
-
-[-远程事务](#3)
-
+#####<a href="#1">代码使用xml</a>
+#####<a href="#1">本地事务</a>
+#####<a href="#1">远程事务</a>
 ```
 go get github.com/zhuxiujia/GoMybatis
 go get github.com/go-sql-driver/mysql
@@ -171,7 +169,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 }
 ```
 
-### <span id="1">使用</span>
+### <a name="1">使用</a>
 
 ```
 //本地GoMybatis使用例子
@@ -188,7 +186,7 @@ func Test_main(t *testing.T) {
 }
 ```
 
-### <span id="2">本地事务</span>
+### <a name="2">本地事务</name>
 
 ```
 //本地事务使用例子
@@ -214,7 +212,7 @@ func Test_local_Transation(t *testing.T) {
 ```
 
 
-### <span id="3">远程事务</span>
+### <a name="3">远程事务</a>
 
 ```
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
