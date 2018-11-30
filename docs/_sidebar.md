@@ -5,4 +5,4 @@
   - [2本地事务](/use-tx-local)
   - [3远程事务(用于微服务)](/use-tx-remote)
 - [规则和限制](/rule)
-- [mapper反射及本地/远程事务原理示意图](/detail)
+- [mapper(Struct)代理及本地/远程事务原理示意图](/detail)
