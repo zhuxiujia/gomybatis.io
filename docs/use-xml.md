@@ -1,5 +1,8 @@
 mapper.go 文件案例
 # 使用教程,代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
+[使用xml](#1)
+
+
 ```
 go get github.com/zhuxiujia/GoMybatis
 go get github.com/go-sql-driver/mysql
@@ -164,7 +167,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	return exampleActivityMapperImpl
 }
 ```
-* [示例](#1)
+* [代码示例](#1)
 ```
 //本地GoMybatis使用例子
 func Test_main(t *testing.T) {
@@ -179,7 +182,8 @@ func Test_main(t *testing.T) {
 	fmt.Println("result=", result)
 }
 ```
-* [本地事务示例](#2)
+
+* [本地事务](#2)
 
 ```
 //本地事务使用例子
@@ -203,7 +207,8 @@ func Test_local_Transation(t *testing.T) {
 	session.Close()  //关闭事务
 }
 ```
-* [远程事务示例](#3)
+
+* [远程事务](#3)
 
 ```
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
@@ -241,6 +246,5 @@ func Test_Remote_Transation(t *testing.T) {
 	//关闭远程事务
 	//transationRMSession.Rollback()
 }
-
 ```
 
