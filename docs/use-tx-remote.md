@@ -1,3 +1,4 @@
+远程事务-用于微服务
 ```
 import (
 	_ "github.com/go-sql-driver/mysql"

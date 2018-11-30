@@ -1,3 +1,4 @@
+本地事务
 ```
 import (
 	_ "github.com/go-sql-driver/mysql"
