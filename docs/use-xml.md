@@ -1,6 +1,6 @@
 mapper.go 文件案例
 # 使用教程,代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
-[-使用xml](#3)
+[-使用xml](#1)
 
 
 ```
@@ -208,7 +208,7 @@ func Test_local_Transation(t *testing.T) {
 }
 ```
 
-<a href="#3">第一段标题</a>
+[远程事务](#3)
 
 
 ```
