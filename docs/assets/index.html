@@ -8,7 +8,7 @@
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
 </head>
 <body>
- <div id="app">
+ <e id="app">
    <v-app light>
     <v-toolbar class="white">
       <v-toolbar-title v-text="title"></v-toolbar-title>
@@ -104,22 +104,40 @@
       </section>
 
       <section>
-        <v-parallax src="https://zhuxiujia.github.io/gomybatis.io/assets/hero.jpg" height="380">
+        <v-parallax src="https://zhuxiujia.github.io/gomybatis.io/assets/hero.jpg" height="180">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-            <em>Kick-start your application today</em>
+            <div class="headline white--text mb-3 text-xs-center">伪分布式事务</div>
+            <em>既可以使用微服务连接单体/主从数据库(MySql...)，分布式数据库(TiDB...)</em>
+            <!--<v-btn-->
+              <!--class="blue lighten-2 mt-5"-->
+              <!--dark-->
+              <!--large-->
+              <!--href="https://zhuxiujia.github.io/gomybatis.io/#/getting-started"-->
+            <!--&gt;-->
+              <!--Get Started-->
+            <!--</v-btn>-->
+          </v-layout>
+        </v-parallax>
+      </section>
+      <v-layout column align-center justify-center>
+        <img src="https://zhuxiujia.github.io/gomybatis.io/tx.png">
+      </v-layout>
+
+      <section>
+        <v-parallax src="https://zhuxiujia.github.io/gomybatis.io/assets/hero.jpg" height="180">
+          <v-layout column align-center justify-center>
+            <em>欢迎GitHub点赞支持我们</em>
             <v-btn
-              class="blue lighten-2 mt-5"
-              dark
-              large
-              href="https://zhuxiujia.github.io/gomybatis.io/#/getting-started"
+            class="blue lighten-2 mt-5"
+            dark
+            large
+            href="https://github.com/zhuxiujia/GoMybatis"
             >
-              Get Started
+            GitHub
             </v-btn>
           </v-layout>
         </v-parallax>
       </section>
-
       <section>
         <v-container grid-list-xl>
           <v-layout row wrap justify-center class="my-5">
