@@ -1,4 +1,4 @@
-- [首页-Home](/)
+- [首页-Home](https://zhuxiujia.github.io/gomybatis.io/assets/index.html)
 - [安装-Installation](/getting-started)
 - [编写代码准备xml](/use-xml)
   - [1使用](/use-def)
