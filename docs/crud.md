@@ -14,6 +14,7 @@ type Activity struct {
 	CreateTime time.Time `json:"createTime"`
 	DeleteFlag int       `json:"deleteFlag"`
 }
+//Dao - mapper结构体，包含一系列sql方法，相当于Dao层
 type ExampleActivityMapperImpl struct {
 	SelectByIds       func(ids []string, result *[]Activity) error `mapperParams:"ids"`
 	SelectAll         func(result *[]Activity) error
@@ -23,7 +24,7 @@ type ExampleActivityMapperImpl struct {
 	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error `mapperParams:"name,startTime,endTime"`
 	DeleteById        func(id string, result *int64) error                                         `mapperParams:"id"`
 }
-//初始化mapper文件和结构体
+//初始化 mapper结构体
 func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	var err error
 	//mysql链接格式为         用户名:密码@(数据库链接地址:端口)/数据库名称   例如root:123456@(***.mysql.rds.aliyuncs.com:3306)/test
