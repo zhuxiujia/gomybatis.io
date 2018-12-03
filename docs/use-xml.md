@@ -1,6 +1,8 @@
 # 使用教程,代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
 
 准备好model层数据模型 和 xml 文件
+
+Example_Activity.go
 ```
 package example
 
@@ -18,7 +20,7 @@ type Activity struct {
 }
 ```
 
-xml文件:
+Example_ActivityMapper.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"

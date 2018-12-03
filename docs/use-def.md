@@ -11,8 +11,7 @@ import (
 )
 
 //定义mapper文件的接口和结构体
-// 支持基本类型(int,string,time.Time,float...且需要指定参数名称`mapperParams:"name"以逗号隔开，且位置要和实际参数相同)
-//自定义结构体参数（属性必须大写）
+//支持包含基本类型的结构体和基本类型(int,string,time.Time,float...且需要指定参数名称`mapperParams:"name"以逗号隔开，且位置要和实际参数相同)
 //参数中除了session指针外，为指针类型的皆为返回数据
 // 函数return必须为error 为返回错误信息
 type ExampleActivityMapperImpl struct {
@@ -46,7 +45,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 }
 ```
 
-### <a name="1">使用</a>
+### <a name="1">基本使用</a>
 
 ```
 //本地GoMybatis使用例子
