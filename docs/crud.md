@@ -67,12 +67,12 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
         </trim>
 
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != ''">#{id,jdbcType=VARCHAR},</if>
-            <if test="name != ''">#{name,jdbcType=VARCHAR},</if>
-            <if test="pcLink != ''">#{pcLink,jdbcType=VARCHAR},</if>
-            <if test="h5Link != ''">#{h5Link,jdbcType=VARCHAR},</if>
-            <if test="remark != ''">#{remark,jdbcType=VARCHAR},</if>
-            <if test="createTime != ''">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="id != ''">#{id},</if>
+            <if test="name != ''">#{name},</if>
+            <if test="pcLink != ''">#{pcLink},</if>
+            <if test="h5Link != ''">#{h5Link},</if>
+            <if test="remark != ''">#{remark},</if>
+            <if test="createTime != ''">#{createTime},</if>
             <if test="deleteFlag != ''">#{deleteFlag},</if>
         </trim>
     </insert>
@@ -105,11 +105,11 @@ func Test_inset(t *testing.T) {
       <update id="updateById">
           update biz_activity
           <set>
-              <if test="name != ''">name = #{name,jdbcType=VARCHAR},</if>
-              <if test="pcLink != ''">pc_link = #{pcLink,jdbcType=VARCHAR},</if>
-              <if test="h5Link != ''">h5_link = #{h5Link,jdbcType=VARCHAR},</if>
-              <if test="remark != ''">remark = #{remark,jdbcType=VARCHAR},</if>
-              <if test="createTime != ''">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+              <if test="name != ''">name = #{name},</if>
+              <if test="pcLink != ''">pc_link = #{pcLink},</if>
+              <if test="h5Link != ''">h5_link = #{h5Link},</if>
+              <if test="remark != ''">remark = #{remark},</if>
+              <if test="createTime != ''">create_time = #{createTime},</if>
               <if test="deleteFlag != ''">delete_flag = #{deleteFlag},</if>
           </set>
           where id = #{id} and delete_flag = 1
