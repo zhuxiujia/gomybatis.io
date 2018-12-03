@@ -1,8 +1,0 @@
-- [首页-Home](https://zhuxiujia.github.io/gomybatis.io/)
-- [安装-Installation](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/getting-started)
-- [编写代码准备xml](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/use-xml)
-  - [1使用](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/use-def)
-  - [2本地事务](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/use-tx-local)
-  - [3远程事务(用于微服务)](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/use-tx-remote)
-- [规则和限制](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/rule)
-- [mapper(Struct)代理及本地/远程事务原理示意图](https://zhuxiujia.github.io/gomybatis.io/assets/docs/#/detail)
