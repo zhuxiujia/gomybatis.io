@@ -52,7 +52,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://github.com/zhuxiujia/GoMybatis/blob/master/mybatis-3-mapper.dtd">
+        "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
    <insert id="insert">
         insert into biz_activity
@@ -100,7 +100,7 @@ func Test_inset(t *testing.T) {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://github.com/zhuxiujia/GoMybatis/blob/master/mybatis-3-mapper.dtd">
+        "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
       <update id="updateById">
           update biz_activity
@@ -141,7 +141,7 @@ func Test_update(t *testing.T) {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://github.com/zhuxiujia/GoMybatis/blob/master/mybatis-3-mapper.dtd">
+        "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
           <update id="deleteById">
               update biz_activity
@@ -171,7 +171,7 @@ func Test_delete(t *testing.T) {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://github.com/zhuxiujia/GoMybatis/blob/master/mybatis-3-mapper.dtd">
+        "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
           <select id="selectByCondition" resultMap="BaseResultMap">
                select * from biz_activity where delete_flag=1
