@@ -1,6 +1,5 @@
 - [首页-Home](https://zhuxiujia.github.io/gomybatis.io/info.html)
-- [安装-Installation](/getting-started)
-  - [准备xml和数据库Model](/use-xml)
+- [安装使用-Installation](/getting-started)
   - [增删改查](/crud)
   - [基本使用](/use-def)
   - [本地事务](/use-tx-local)
