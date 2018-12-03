@@ -118,7 +118,7 @@
       <section>
         <v-parallax src="https://zhuxiujia.github.io/gomybatis.io/assets/hero.jpg" height="180">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-3 text-xs-center">伪分布式事务</div>
+            <div class="headline white--text mb-3 text-xs-center">事务支持</div>
             <em>既可以使用微服务连接单体/主从数据库(MySql...)，分布式数据库(TiDB...)</em>
             <!--<v-btn-->
               <!--class="blue lighten-2 mt-5"-->
@@ -133,6 +133,26 @@
       </section>
       <v-layout column align-center justify-center>
         <img src="https://zhuxiujia.github.io/gomybatis.io/tx.png">
+      </v-layout>
+      <v-layout column align-center justify-center>
+      <code>
+        //事务
+        session := *GoMybatis.DefaultSessionFactory.NewSession()
+        session.Begin() //开启事务
+        var activityBean = Activity{
+           Id:   "170",
+           Name: "rs168-8",
+        }
+        var updateNum int64 = 0
+        //session 传值则使用已经创建的session，否则新建一个session
+        var e = exampleActivityMapperImpl.UpdateById(&session, activityBean, &updateNum)
+        fmt.Println("updateNum=", updateNum)
+        if e != nil {
+           panic(e)
+        }
+        session.Commit() //提交事务
+        session.Close()  //关闭事务
+      </code>
       </v-layout>
 
       <section>
