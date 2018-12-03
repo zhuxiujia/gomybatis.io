@@ -14,11 +14,15 @@ type Activity struct {
 	CreateTime time.Time `json:"createTime"`
 	DeleteFlag int       `json:"deleteFlag"`
 }
-
 type ExampleActivityMapperImpl struct {
-       Insert     func(arg Activity, result *int64) error
+	SelectByIds       func(ids []string, result *[]Activity) error `mapperParams:"ids"`
+	SelectAll         func(result *[]Activity) error
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(session *GoMybatis.Session, arg Activity, result *int64) error                                     //只要参数中包含有*GoMybatis.Session的类型，框架默认使用传入的session对象，用于自定义事务
+	Insert            func(arg Activity, result *int64) error
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error `mapperParams:"name,startTime,endTime"`
+	DeleteById        func(id string, result *int64) error                                         `mapperParams:"id"`
 }
-
 //初始化mapper文件和结构体
 func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	var err error
