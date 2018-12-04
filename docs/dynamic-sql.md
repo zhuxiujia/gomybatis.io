@@ -42,7 +42,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 还是上面的例子，但是这次变为提供了“title”就按“title”查找，提供了“author”就按“author”查找的情形，若两者都没有提供，就返回所有符合条件的 BLOG（实际情况可能是由管理员按一定策略选出 BLOG 列表，而不是返回大量无意义的随机结果）。
 ```
 <select id="findActiveBlogLike"
-     resultType="Blog">
+     >
   SELECT * FROM BLOG WHERE state = ‘ACTIVE’
   <choose>
     <when test="title != null">
@@ -61,7 +61,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 前面几个例子已经合宜地解决了一个臭名昭著的动态 SQL 问题。现在回到“if”示例，这次我们将“ACTIVE = 1”也设置成动态的条件，看看会发生什么。
 ```
 <select id="findActiveBlogLike"
-     resultType="Blog">
+     >
   SELECT * FROM BLOG 
   WHERE 
   <if test="state != null">
@@ -136,7 +136,7 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
 ## foreach
 动态 SQL 的另外一个常用的操作需求是对一个集合进行遍历，通常是在构建 IN 条件语句的时候。比如：
 ```
-<select id="selectPostIn" resultType="domain.blog.Post">
+<select id="selectPostIn" >
   SELECT *
   FROM POST P
   WHERE ID in
@@ -152,7 +152,7 @@ foreach 元素的功能非常强大，它允许你指定一个集合，声明可
 ## bind(developing)
 bind 元素可以从 OGNL 表达式中创建一个变量并将其绑定到上下文。比如：
 ```
-<select id="selectBlogsLike" resultType="Blog">
+<select id="selectBlogsLike" >
   <bind name="pattern" value="'%' + _parameter.getTitle() + '%'" />
   SELECT * FROM BLOG
   WHERE title LIKE #{pattern}
