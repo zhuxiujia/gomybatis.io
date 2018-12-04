@@ -1,3 +1,5 @@
+> 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
+
 ## 先定义模型和结构体
 ```
 package example

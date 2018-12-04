@@ -1,3 +1,6 @@
+> 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
+
+
 远程事务-用于微服务
 ```
 import (

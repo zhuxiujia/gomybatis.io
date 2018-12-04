@@ -1,3 +1,6 @@
+> 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
+
+
 本地事务
 ```
 import (

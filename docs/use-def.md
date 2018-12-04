@@ -1,3 +1,5 @@
+> 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
+
 实际使用Example_test.go
 ```
 import (
