@@ -1,12 +1,12 @@
 > 动态sql
 
-MyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 或其它类似框架的经验，你就能体会到根据不同条件拼接 SQL 语句的痛苦。例如拼接时要确保不能忘记添加必要的空格，还要注意去掉列表最后一个列名的逗号。利用动态 SQL 这一特性可以彻底摆脱这种痛苦。
+GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 或其它类似框架的经验，你就能体会到根据不同条件拼接 SQL 语句的痛苦。例如拼接时要确保不能忘记添加必要的空格，还要注意去掉列表最后一个列名的逗号。利用动态 SQL 这一特性可以彻底摆脱这种痛苦。
 
      
 虽然在以前使用动态 SQL 并非一件易事，但正是GoMyBatis 提供了可以被用在任意 SQL 映射语句中的强大的动态 SQL 语言得以改进这种情形。
 
      
-动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多元素需要花时间了解。GoMyBatis 大大精简了元素种类，现在只需学习原来一半的元素便可。MyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。
+动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多元素需要花时间了解。GoMyBatis 大大精简了元素种类，现在只需学习原来一半的元素便可。GoMyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。
 
 * if
 * choose (when, otherwise)
@@ -38,7 +38,7 @@ MyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC �
 </select>
 ```
 ## choose, when, otherwise (developing)
-有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，MyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。
+有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，GoMyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。
 还是上面的例子，但是这次变为提供了“title”就按“title”查找，提供了“author”就按“author”查找的情形，若两者都没有提供，就返回所有符合条件的 BLOG（实际情况可能是由管理员按一定策略选出 BLOG 列表，而不是返回大量无意义的随机结果）。
 ```
 <select id="findActiveBlogLike"
