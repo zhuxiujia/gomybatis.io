@@ -79,8 +79,8 @@
                     <v-card-text>
                       <p>GoMybatis的目标是方便快捷的使用SQL，我们认为使用xml拆分SQL和原生代码逻辑使项目逻辑更加规范，灵活，通用，可读性，可维护性高</p>
                       <p>GoMybatis学习成本低，一次学会即可在go（在go中去除了java版mybatis复杂的部分）和java中使用（会Sql语句,会使用Xml定义if，foreach等基本逻辑即可）sql语句脱离了原生代码松耦合，方便的在java,golang等编程语言中相互使用，后期维护优化慢sql方便</p>
-                      <p>和开源ORM框架Xorm,Gorm比较，这2个框架有各自的规则毫不统一增加学习成本，Xorm <code>engine.Asc("id").Desc("time").Find(&orders)</code>和Gorm<code>db.First(&user).Limit(10).Find(&users).GetErrors()</code></p>
-                      <p>和开源ORM框架GoBatis比较，这个框架使用注释标记xml，这样导致需要生成中间代码（生成一个***.go代码文件）来执行数据库查询等操作。而GoMybatis只需要xml和定义Struct一系列方法，无需中间代码</p>
+                      <p>-和开源ORM框架Xorm,Gorm比较，这2个框架有各自的规则毫不统一增加学习成本，Xorm <code>engine.Asc("id").Desc("time").Find(&orders)</code>和Gorm<code>db.First(&user).Limit(10).Find(&users).GetErrors()</code></p>
+                      <p>-和开源ORM框架GoBatis比较，这个框架使用注释标记xml，这样导致需要生成中间代码（生成一个***.go代码文件）来执行数据库查询等操作。而GoMybatis只需要xml和定义Struct一系列方法，无需中间代码</p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
