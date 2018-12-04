@@ -38,7 +38,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 </select>
 ```
 ## choose, when, otherwise (developing)
-有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，GoMyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。
+有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，GoMyBatis 提供了 choose 元素，它有点像 golang 中的 switch 语句。
 还是上面的例子，但是这次变为提供了“title”就按“title”查找，提供了“author”就按“author”查找的情形，若两者都没有提供，就返回所有符合条件的 BLOG（实际情况可能是由管理员按一定策略选出 BLOG 列表，而不是返回大量无意义的随机结果）。
 ```
 <select id="findActiveBlogLike"
@@ -148,7 +148,7 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
 ```
 foreach 元素的功能非常强大，它允许你指定一个集合，声明可以在元素体内使用的集合项（item）和索引（index）变量。它也允许你指定开头与结尾的字符串以及在迭代结果之间放置分隔符。这个元素是很智能的，因此它不会偶然地附加多余的分隔符。
 注意 你可以将任何可迭代对象（如 List、Set 等）、Map 对象或者数组对象传递给 foreach 作为集合参数。当使用可迭代对象或者数组时，index 是当前迭代的次数，item 的值是本次迭代获取的元素。当使用 Map 对象（或者 Map.Entry 对象的集合）时，index 是键，item 是值。
-到此我们已经完成了涉及 XML 配置文件和 XML 映射文件的讨论。下一章将详细探讨 Java API，这样就能提高已创建的映射文件的利用效率。
+到此我们已经完成了涉及 XML 配置文件和 XML 映射文件的讨论。下一章将详细探讨 Golang API，这样就能提高已创建的映射文件的利用效率。
 ## bind(developing)
 bind 元素可以从 OGNL 表达式中创建一个变量并将其绑定到上下文。比如：
 ```
