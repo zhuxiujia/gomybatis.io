@@ -6,7 +6,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 虽然在以前使用动态 SQL 并非一件易事，但正是GoMyBatis 提供了可以被用在任意 SQL 映射语句中的强大的动态 SQL 语言得以改进这种情形。
 
      
-动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多元素需要花时间了解。GoMyBatis 大大精简了元素种类，现在只需学习原来一半的元素便可。GoMyBatis 采用功能强大的基于 OGNL 的表达式来淘汰其它大部分元素。
+动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多元素需要花时间了解。GoMyBatis 大大精简了元素种类，现在只需学习原来一半的元素便可。GoMyBatis 采用功能强大的基于 govaluate 的表达式来淘汰其它大部分元素。
 
 * if
 * choose (when, otherwise)
