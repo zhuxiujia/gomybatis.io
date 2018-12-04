@@ -93,7 +93,9 @@
                       <div class="headline">快速</div>
                     </v-card-title>
                     <v-card-text>
-                      GoMybatis 基于Go标准库sql驱动和govaluate表达式及反射实现,初始化时分析编译mapper xml的逻辑使用反射写入自定义struct的func里.达到内存空间换运行时间的性能优化
+                      <p>-GoMybatis 基于Go标准库sql驱动和govaluate表达式及反射实现,初始化时分析编译mapper xml的逻辑使用反射写入自定义struct的func里.达到内存空间换运行时间的性能优化<p>
+                      <p>-编码10万次组装SQL tps = 243960/s(测试机器 Cpu 6 core,mem 16GB,256G Solid State Disk) 详见SqlBuilder_test.go<p>
+                      <p>-解码10万次mysql数据到Struct tps = 219396/s(测试机器 Cpu 6 core,mem 16GB,256G Solid State Disk) 详见 SqlResultDecodeUtil_test.go<p>
                     </v-card-text>
                   </v-card>
                 </v-flex>
