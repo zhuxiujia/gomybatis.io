@@ -94,7 +94,7 @@
                     </v-card-title>
                     <v-card-text>
                       <p>-GoMybatis 基于Go标准库sql驱动和govaluate表达式及反射实现,初始化时分析编译mapper xml的逻辑使用反射写入自定义struct的func里.达到内存空间换运行时间的性能优化</p>
-                      <p>-得益于无锁并发,并发协程数为1000，总请求数为10万,执行查询达 耗时0.4s,Tps = 246982/s 详见MysqlEngine_test.go</p>
+                      <p>-得益于无锁并发,并发协程数为1000，总请求数为10万,执行查询达 耗时0.4s,Tps = 246982/s 详见GoMybatisEngine_test.go</p>
                       <p>-单协程编码SQL 10万次 tps = 243960/s 详见 SqlBuilder_test.go</p>
                       <p>-单协程解码数据10万次 tps = 219396/s 详见 SqlResultDecodeUtil_test.go</p>
                       <a href="https://github.com/zhuxiujia/GoMybatis">压测代码在GitHub中查看</a>(测试机器 Cpu 6 core,mem 16GB,256G Disk,System Windows10)
