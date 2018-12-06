@@ -1,5 +1,6 @@
 ## 开始安装
-> 选择数据库驱动类型
+> 选择数据库驱动类型,以下列举了数据库驱动(如果以下列表没有，原则上支持mysql协议或者Postgres协议的都支持)：
+
 ```
  Mysql: github.com/go-sql-driver/mysql
  MyMysql: github.com/ziutek/mymysql/godrv
