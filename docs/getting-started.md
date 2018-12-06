@@ -1,5 +1,5 @@
 ## 开始安装
-各种数据库驱动支持
+选择数据库驱动类型
 ```
  Mysql: github.com/go-sql-driver/mysql
  MyMysql: github.com/ziutek/mymysql/godrv
@@ -10,7 +10,7 @@
  MsSql: github.com/lunny/godbc
  Oracle: github.com/mattn/go-oci8
  ```
-设置好GoPath,用go get 命令下载GoMybatis和对应的数据库驱动
+设置好GoPath,用go get 在命令行工具执行以下命令下载GoMybatis和数据库驱动
 ```
 go get github.com/zhuxiujia/GoMybatis
 go get github.com/go-sql-driver/mysql
