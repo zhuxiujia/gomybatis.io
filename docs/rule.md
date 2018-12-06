@@ -19,7 +19,7 @@ type ActivityMapperImpl struct {
 xml文件案例:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
     <!-- SelectByCondition func(arg SelectByConditionArg, result *[]model.Activity) error -->
     <!-- 后台查询产品 -->
