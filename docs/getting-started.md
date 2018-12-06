@@ -15,3 +15,11 @@
 go get github.com/zhuxiujia/GoMybatis
 go get github.com/go-sql-driver/mysql
 ```
+在你的代码中需要载入你选择的驱动，这里展示Mysql驱动
+```
+import (
+	"fmt"
+	_ "github.com/go-sql-driver/mysql" //Mysql驱动程序
+	"github.com/zhuxiujia/GoMybatis"
+	)
+```
