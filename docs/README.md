@@ -2,21 +2,21 @@
 [![Build Status](https://travis-ci.com/zhuxiujia/GoMybatis.svg?branch=master)](https://travis-ci.com/zhuxiujia/GoMybatis)
 
 ![Image text](https://zhuxiujia.github.io/gomybatis.io/assets/vuetify.png)
-# 官方网站-文档/介绍
+# 官方网站/文档
 https://zhuxiujia.github.io/gomybatis.io/info.html
 # 优势
+-支持多种数据库(理论上支持mysql和pg的协议以及支持(标准库"database/sql")都支持)
 -高并发，假设数据库响应时间为0，在6核16Gpc上可框架可以压出 246982Tps,耗时仅仅0.4s<br>
 -支持事务，session灵活插拔，兼容过渡期微服务<br>
 -动态SQL，在xml中可灵活运用if判断，foreach遍历数组，resultMap,bind等等java框架Mybatis包含的实用功能<br>
 -无需生成*.go等等中间代码，xml读取后可直接写入到自定义的Struct,Func属性中调用函数<br>
 ### 已支持绝大部分标签
-`<select>,<update>,<insert>,<delete>,<trim>,<if>,<set>,<foreach>,<resultMap>,<bind>`
+`<select>,<update>,<insert>,<delete>,<trim>,<if>,<set>,<foreach>,<resultMap>,<bind>,<choose><when><otherwise>`
 ### 已支持本地和远程事务,方便处于 单数据库(Mysql,postgresql)-分布式数据库（TiDB,cockroachdb...）过渡期间的微服务
 ![Image text](https://zhuxiujia.github.io/gomybatis.io/assets/tx.png)
 
-## 使用教程,
-##### 代码文件请移步Github文件夹https://github.com/zhuxiujia/GoMybatis/tree/master/example
-各种数据库驱动支持
+
+数据库驱动列表
 ```
  Mysql: github.com/go-sql-driver/mysql
  MyMysql: github.com/ziutek/mymysql/godrv
@@ -26,7 +26,13 @@ https://zhuxiujia.github.io/gomybatis.io/info.html
  MsSql: github.com/denisenkom/go-mssqldb
  MsSql: github.com/lunny/godbc
  Oracle: github.com/mattn/go-oci8
+ CockroachDB(Postgres): github.com/lib/pq
  ```
+ 
+## 使用教程
+
+> 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
+
 设置好GoPath,用go get 命令下载GoMybatis和对应的数据库驱动
 ```
 go get github.com/zhuxiujia/GoMybatis
@@ -51,13 +57,13 @@ xml文件案例:
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper namespace="ActivityMapperImpl">
     <resultMap id="BaseResultMap" type="example.Activity">
-        <id column="id" property="id" goType="string"/>
-        <result column="name" property="name" goType="string"/>
-        <result column="pc_link" property="pcLink" goType="string"/>
-        <result column="h5_link" property="h5Link" goType="string"/>
-        <result column="remark" property="remark" goType="string"/>
-        <result column="create_time" property="createTime" goType="time.Time"/>
-        <result column="delete_flag" property="deleteFlag" goType="int"/>
+        <id column="id" property="id" langType="string"/>
+        <result column="name" property="name" langType="string"/>
+        <result column="pc_link" property="pcLink" langType="string"/>
+        <result column="h5_link" property="h5Link" langType="string"/>
+        <result column="remark" property="remark" langType="string"/>
+        <result column="create_time" property="createTime" langType="time.Time"/>
+        <result column="delete_flag" property="deleteFlag" langType="int"/>
     </resultMap>
     <!--SelectAll(result *[]Activity)error-->
     <select id="selectAll" resultMap="BaseResultMap">
@@ -102,4 +108,8 @@ func main() {
   	fmt.Println(result)
 }
 ```
+
+## TODO 期待功能
+-`<sql><include>` 标签支持（进行中）</br>
+-针对于GoLand 的xml生成器,可以一键生成基本的CRUD(待支持..)</br>
 
