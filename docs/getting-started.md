@@ -10,6 +10,7 @@
  MsSql: github.com/denisenkom/go-mssqldb
  MsSql: github.com/lunny/godbc
  Oracle: github.com/mattn/go-oci8
+ CockroachDB: github.com/lib/pq
  ```
 > 1 设置好GoPath,用go get 在命令行工具执行以下命令下载GoMybatis
 
