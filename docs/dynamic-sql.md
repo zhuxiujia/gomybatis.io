@@ -19,7 +19,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 <select id="findActiveBlogWithTitleLike">
   SELECT * FROM BLOG 
   WHERE state = ‘ACTIVE’ 
-  <if test="title != null">
+  <if test="title != ''">
     AND title like #{title}
   </if>
 </select>
@@ -29,10 +29,10 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 ```
 <select id="findActiveBlogLike">
   SELECT * FROM BLOG WHERE state = ‘ACTIVE’ 
-  <if test="title != null">
+  <if test="title != ''">
     AND title like #{title}
   </if>
-  <if test="author != null and author.name != null">
+  <if test="author != '' and author.name != ''">
     AND author_name like #{author.name}
   </if>
 </select>
@@ -45,10 +45,10 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
      >
   SELECT * FROM BLOG WHERE state = ‘ACTIVE’
   <choose>
-    <when test="title != null">
+    <when test="title != ''">
       AND title like #{title}
     </when>
-    <when test="author != null and author.name != null">
+    <when test="author != '' and author.name != ''">
       AND author_name like #{author.name}
     </when>
     <otherwise>
@@ -64,13 +64,13 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
      >
   SELECT * FROM BLOG 
   WHERE 
-  <if test="state != null">
+  <if test="state != ''">
     state = #{state}
   </if> 
-  <if test="title != null">
+  <if test="title != ''">
     AND title like #{title}
   </if>
-  <if test="author != null and author.name != null">
+  <if test="author != '' and author.name != ''">
     AND author_name like #{author.name}
   </if>
 </select>
@@ -92,13 +92,13 @@ GoMyBatis 有一个简单的处理，这在 90% 的情况下都会有用。而�
 <select id="findActiveBlogLike">
   SELECT * FROM BLOG 
   <where> 
-    <if test="state != null">
+    <if test="state != ''">
          state = #{state}
     </if> 
-    <if test="title != null">
+    <if test="title != ''">
         AND title like #{title}
     </if>
-    <if test="author != null and author.name != null">
+    <if test="author != '' and author.name != ''">
         AND author_name like #{author.name}
     </if>
   </where>
@@ -117,10 +117,10 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
 <update id="updateAuthorIfNecessary">
   update Author
     <set>
-      <if test="username != null">username=#{username},</if>
-      <if test="password != null">password=#{password},</if>
-      <if test="email != null">email=#{email},</if>
-      <if test="bio != null">bio=#{bio}</if>
+      <if test="username != ''">username=#{username},</if>
+      <if test="password != ''">password=#{password},</if>
+      <if test="email != ''">email=#{email},</if>
+      <if test="bio != ''">bio=#{bio}</if>
     </set>
   where id=#{id}
 </update>
