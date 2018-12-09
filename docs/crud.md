@@ -44,7 +44,7 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	bytes, _ := ioutil.ReadAll(file)
 	var exampleActivityMapperImpl ExampleActivityMapperImpl
 	//设置对应的mapper xml文件
-	GoMybatis.UseProxyMapperByEngine(&exampleActivityMapperImpl, bytes, engine, true)
+	GoMybatis.WriteMapperPtrByEngine(&exampleActivityMapperImpl, bytes, engine, true)
 	return exampleActivityMapperImpl
 }
 ```
