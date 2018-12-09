@@ -15,14 +15,17 @@ import (
 
 //定义mapper文件的接口和结构体
 //支持包含基本类型的结构体和基本类型(int,string,time.Time,float...且需要指定参数名称`mapperParams:"name"以逗号隔开，且位置要和实际参数相同)
-//参数中除了session指针外，为指针类型的皆为返回数据
-// 函数return必须为error 为返回错误信息
+//参数中除了session指针外，为参数数据
+// 函数return必须有error 为返回错误信息
 type ExampleActivityMapperImpl struct {
-	SelectAll         func(result *[]Activity) error
-	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
-	UpdateById        func(session *GoMybatis.Session, arg Activity, result *int64) error //只要参数中包含有*GoMybatis.Session的类型，框架默认使用传入的session对象，用于自定义事务
-	Insert            func(arg Activity, result *int64) error
-	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                            `mapperParams:"name,startTime,endTime"`
+		SelectByIds       func(ids []string) ([]Activity, error)                                                            `mapperParams:"ids"`
+    	SelectAll         func() ([]Activity, error)
+    	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
+    	UpdateById        func(session *GoMybatis.Session, arg Activity) (int64, error) //参数中包含有*GoMybatis.Session的类型，用于自定义事务
+    	Insert            func(arg Activity) (int64, error)
+    	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
+    	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
+    	Choose            func(deleteFlag int) ([]Activity, error)                                                          `mapperParams:"deleteFlag"`
 }
 
 //初始化mapper文件和结构体
