@@ -4,16 +4,19 @@
 ```
 type ActivityMapperImpl struct {
 //定义mapper文件的接口和结构体，也可以只定义结构体就行
-//mapper.go文件 函数参数（自定义结构体参数（属性必须大写），为指针类型的返回数据,*GoMybatis.Session作为该sql执行的session） error 为返回错误
-	SelectAll         func(result *[]Activity) error
-	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
-	UpdateById        func(session *GoMybatis.Session, arg Activity, result *int64) error //只要参数中包含有*GoMybatis.Session的类型，框架默认使用传入的session对象，用于自定义事务
-	Insert            func(arg Activity, result *int64) error
-	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                            `mapperParams:"name,startTime,endTime"`
+//mapper.go文件 函数参数（自定义结构体参数（属性必须大写）,*GoMybatis.Session作为该sql执行的session） error 为返回错误
+	SelectByIds       func(ids []string) ([]Activity, error)                                                            `mapperParams:"ids"`
+	SelectAll         func() ([]Activity, error)
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(session *GoMybatis.Session, arg Activity) (int64, error) //参数中包含有*GoMybatis.Session的类型，用于自定义事务
+	Insert            func(arg Activity) (int64, error)
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
+	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
+	Choose            func(deleteFlag int) ([]Activity, error)   
 }
 ```
 
-> 包含一系列func的struct 为mapper定义文件,其中 func 返回值必须为error。当最后一个参数为指针时，表示是返回值类型其他默认为参数，多个参数请定义tag注解  `mapperParams:"***"`,逗号隔开，参数为你的xml中sql出现的‘#{***}’字段
+> 包含一系列func的struct 为mapper定义文件,其中 func 返回值必须为error。多个参数请定义tag注解  `mapperParams:"***"`,逗号隔开，参数为你的xml中sql出现的‘#{***}’字段
 
 # 定义Mapper xml
 xml文件案例:
