@@ -27,8 +27,8 @@ SelectByIds       func(ids []string) ([]Activity, error)                        
 	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
 	Choose            func(deleteFlag int) ([]Activity, error)   
 }
-//初始化 mapper结构体
-func InitMapperByLocalSession() ExampleActivityMapperImpl {
+//初始化mapper文件和结构体
+func InitMapperByLocalSession() ExampleActivityMapper {
 	var err error
 	//mysql链接格式为         用户名:密码@(数据库链接地址:端口)/数据库名称   例如root:123456@(***.mysql.rds.aliyuncs.com:3306)/test
 	engine, err := GoMybatis.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
@@ -43,10 +43,10 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 	defer file.Close()
 
 	bytes, _ := ioutil.ReadAll(file)
-	var exampleActivityMapperImpl ExampleActivityMapperImpl
+	var exampleActivityMapper ExampleActivityMapper
 	//设置对应的mapper xml文件
-	GoMybatis.WriteMapperPtrByEngine(&exampleActivityMapperImpl, bytes, engine, true)
-	return exampleActivityMapperImpl
+	GoMybatis.WriteMapperPtrByEngine(&exampleActivityMapper, bytes, engine, true)
+	return exampleActivityMapper
 }
 ```
 
@@ -86,10 +86,9 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 //插入
 func Test_inset(t *testing.T) {
 	//初始化mapper文件
-	var exampleActivityMapperImpl = InitMapperByLocalSession()
+	var exampleActivityMapper = InitMapperByLocalSession()
 	//使用mapper
-	var result int64
-	var err = exampleActivityMapperImpl.Insert(Activity{Id: "171", Name: "test_insret", DeleteFlag: 1}, &result)
+	var result, err = exampleActivityMapper.Insert(Activity{Id: "171", Name: "test_insret", DeleteFlag: 1})
 	if err != nil {
 		panic(err)
 	}
@@ -129,8 +128,7 @@ func Test_update(t *testing.T) {
 		Id:   "171",
 		Name: "rs168-8",
 	}
-	var updateNum int64 = 0
-	var e = exampleActivityMapperImpl.UpdateById(nil, activityBean, &updateNum) //sessionId 有值则使用已经创建的session，否则新建一个session
+	var updateNum, e = exampleActivityMapperImpl.UpdateById(nil, activityBean) //sessionId 有值则使用已经创建的session，否则新建一个session
 	fmt.Println("updateNum=", updateNum)
 	if e != nil {
 		panic(e)
@@ -160,8 +158,7 @@ func Test_delete(t *testing.T) {
 	//初始化mapper文件
 	var exampleActivityMapperImpl = InitMapperByLocalSession()
 	//使用mapper
-	var result int64
-	var err = exampleActivityMapperImpl.DeleteById("171", &result)
+	var result, err = exampleActivityMapperImpl.DeleteById("171")
 	if err != nil {
 		panic(err)
 	}
@@ -199,8 +196,7 @@ func Test_select(t *testing.T) {
 	//初始化mapper文件
 	var exampleActivityMapperImpl = InitMapperByLocalSession()
 	//使用mapper
-	var result []Activity
-	var err = exampleActivityMapperImpl.SelectByCondition("", time.Time{}, time.Time{}, 0, 2000, &result)
+	var result, err = exampleActivityMapperImpl.SelectByCondition("", time.Time{}, time.Time{}, 0, 2000)
 	if err != nil {
 		panic(err)
 	}

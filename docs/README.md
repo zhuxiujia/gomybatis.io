@@ -96,9 +96,8 @@ func main() {
 	GoMybatis.WriteMapperPtrByEngine(&exampleActivityMapperImpl, xmlBytes, engine, true)
 
 	//使用mapper
-	var result []Activity
-	exampleActivityMapperImpl.SelectAll(&result)
-
+    result,error:=exampleActivityMapperImpl.SelectAll(&result)
+    fmt.Println(error)
 	fmt.Println(result)
 }
 ```

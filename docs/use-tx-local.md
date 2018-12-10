@@ -53,23 +53,22 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 
 //本地事务使用例子
 func Test_local_Transation(t *testing.T) {
-	    //初始化mapper文件
-    	exampleActivityMapperImpl := InitMapperByLocalSession()
-    	//使用事务
-    	session := *GoMybatis.DefaultSessionFactory.NewSession(GoMybatis.SessionType_Default,nil)
-    	session.Begin() //开启事务
-    	var activityBean = Activity{
-    		Id:   "170",
-    		Name: "rs168-8",
-    	}
-    	var updateNum int64 = 0
-    	var e = exampleActivityMapperImpl.UpdateById(&session, activityBean, &updateNum) //sessionId 有值则使用已经创建的session，否则新建一个session
-    	fmt.Println("updateNum=", updateNum)
-    	if e != nil {
-    		panic(e)
-    	}
-    	session.Commit() //提交事务
-    	session.Close()  //关闭事务
+	//初始化mapper文件
+	exampleActivityMapperImpl := InitMapperByLocalSession()
+	//使用事务
+	var session = GoMybatis.DefaultSessionFactory.NewSession(GoMybatis.SessionType_Default, nil)
+	session.Begin() //开启事务
+	var activityBean = Activity{
+		Id:   "170",
+		Name: "rs168-8",
+	}
+	var updateNum, e = exampleActivityMapperImpl.UpdateById(&session, activityBean) //sessionId 有值则使用已经创建的session，否则新建一个session
+	fmt.Println("updateNum=", updateNum)
+	if e != nil {
+		panic(e)
+	}
+	session.Commit() //提交事务
+	session.Close()  //关闭事务
 }
 
 ```
