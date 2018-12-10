@@ -16,7 +16,10 @@ type ActivityMapperImpl struct {
 }
 ```
 
-> 包含一系列func的struct 为mapper定义文件,其中 func 返回值必须为error。多个参数请定义tag注解  `mapperParams:"***"`,逗号隔开，参数为你的xml中sql出现的‘#{***}’字段
+* func 名称必须是可导出的，首字母大写（xml中首字母可小写，框架可忽略xml中的函数名大小写）
+* 其中 func 返回值必须有一个error
+* 多个基本类型参数请tag注解  `mapperParams:"*,*,*"`,逗号隔开，参数对应xml中出现的‘#{*}’字段
+* 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
 
 # 定义Mapper xml
 xml文件案例:
@@ -48,4 +51,6 @@ xml文件案例:
 </mapper>
 ```
 
-> 这里可以看到，if表达式判断参数是否0值，注意 time.Time的零值为0，数值的零值为0，string的零值为''
+* if表达式判断参数是否0值，注意 time.Time的零值为0，日期和数值的零值为0，string的零值为''
+* 对于"<，>" 符号可能需要转义字符，例如 '<' 对应 &lt;
+* 为了正常显示dtd定义xml智能提示，推荐使用GoLand或者intellij idea打开和编辑xml文件。dtd链接请指向例子中的 "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd"
