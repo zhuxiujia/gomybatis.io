@@ -8,4 +8,4 @@
   - [远程事务(用于微服务)--RemoteTransaction](/use-tx-remote)
 - [规则和限制-Limit/Rule](/rule)
 - [原理示意图-Principle Of Realization](/detail)
-- [版本说明-version](/version)
+- [版本说明-version](/version-info)
