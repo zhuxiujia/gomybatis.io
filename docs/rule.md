@@ -1,7 +1,7 @@
 ## 限制和规则
 ### 定义mapper
 * func 名称必须是可导出的，首字母大写（xml中首字母可小写，框架可忽略xml中的函数名大小写）
-* 其中 func 返回值必须有一个error
+* 其中 func 返回值必须只有一个error，参数可以多个或者没有，返回数据除了error，也可以不传
 * 多个基本类型参数请tag注解  `mapperParams:"*,*,*"`,逗号隔开，参数对应xml中出现的‘#{*}’字段
 * 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
 * 如果xml没有出现struct定义的func，框架会在扫描阶段 painc，并且提示缺少实现的 函数名称
