@@ -52,5 +52,5 @@ xml文件案例:
 ```
 
 * if表达式判断参数是否0值，注意 time.Time的零值为0，日期和数值的零值为0，string的零值为''
-* 对于"<，>" 符号可能需要转义字符，例如 '<' 对应 &lt;
+* 对于"<，>" 符号可能需要转义字符，例如 '<' 对应 '&lt';
 * 为了正常显示dtd定义xml智能提示，推荐使用GoLand或者intellij idea打开和编辑xml文件。dtd链接请指向例子中的 "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd"
