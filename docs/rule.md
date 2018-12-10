@@ -20,6 +20,7 @@ type ActivityMapperImpl struct {
 * 其中 func 返回值必须有一个error
 * 多个基本类型参数请tag注解  `mapperParams:"*,*,*"`,逗号隔开，参数对应xml中出现的‘#{*}’字段
 * 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
+* 如果xml没有出现struct定义的func，框架会在扫描阶段 painc，并且提示缺少实现的 函数名称
 
 # 定义Mapper xml
 xml文件案例:
