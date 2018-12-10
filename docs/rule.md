@@ -1,5 +1,5 @@
-# 限制和规则
-# 定义mapper
+## 限制和规则
+### 定义mapper
 ```
 type ActivityMapperImpl struct {
 //定义mapper文件的接口和结构体，也可以只定义结构体就行
@@ -21,7 +21,7 @@ type ActivityMapperImpl struct {
 * 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
 * 如果xml没有出现struct定义的func，框架会在扫描阶段 painc，并且提示缺少实现的 函数名称
 
-# 定义Mapper xml
+### 定义Mapper xml
 xml文件案例:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
