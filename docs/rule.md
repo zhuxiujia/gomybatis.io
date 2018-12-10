@@ -48,4 +48,4 @@ xml文件案例:
 </mapper>
 ```
 
-> 这里可以看到 #{EndTime} 和 mapperParams定义的endTime不一样，框架默认不区分 参数首字母大小写。if表达式判断参数是否0值，注意 time.Time的零值为0，数值的零值为0，string的零值为''
+> 这里可以看到，if表达式判断参数是否0值，注意 time.Time的零值为0，数值的零值为0，string的零值为''
