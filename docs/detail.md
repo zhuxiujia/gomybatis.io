@@ -3,11 +3,14 @@
 ## mapper(Struct)代理原理
 <pre>
 type ActivityMapperImpl struct {
-	SelectAll         func(result *[]model.Activity) error
-	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]model.Activity) error `mapperParams:"name,startTime,endTime,page,size"`
-	UpdateById        func(arg model.Activity, result *int64) error
-	Insert            func(arg model.Activity, result *int64) error
-	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error                                  `mapperParams:"name,startTime,endTime"`
+	SelectByIds       func(ids []string) ([]Activity, error)                                                            `mapperParams:"ids"`
+	SelectAll         func() ([]Activity, error)
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(session *GoMybatis.Session, arg Activity) (int64, error) //参数中包含有*GoMybatis.Session的类型，用于自定义事务
+	Insert            func(arg Activity) (int64, error)
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
+	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
+	Choose            func(deleteFlag int) ([]Activity, error)   
 }
 </pre>
 
