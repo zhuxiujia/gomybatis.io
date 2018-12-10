@@ -18,13 +18,14 @@ type Activity struct {
 }
 //Dao - mapper结构体，包含一系列sql方法，相当于Dao层
 type ExampleActivityMapperImpl struct {
-	SelectByIds       func(ids []string, result *[]Activity) error `mapperParams:"ids"`
-	SelectAll         func(result *[]Activity) error
-	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int, result *[]Activity) error `mapperParams:"name,startTime,endTime,page,size"`
-	UpdateById        func(session *GoMybatis.Session, arg Activity, result *int64) error                                     //只要参数中包含有*GoMybatis.Session的类型，框架默认使用传入的session对象，用于自定义事务
-	Insert            func(arg Activity, result *int64) error
-	CountByCondition  func(name string, startTime time.Time, endTime time.Time, result *int) error `mapperParams:"name,startTime,endTime"`
-	DeleteById        func(id string, result *int64) error                                         `mapperParams:"id"`
+SelectByIds       func(ids []string) ([]Activity, error)                                                            `mapperParams:"ids"`
+	SelectAll         func() ([]Activity, error)
+	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
+	UpdateById        func(session *GoMybatis.Session, arg Activity) (int64, error) //参数中包含有*GoMybatis.Session的类型，用于自定义事务
+	Insert            func(arg Activity) (int64, error)
+	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
+	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
+	Choose            func(deleteFlag int) ([]Activity, error)   
 }
 //初始化 mapper结构体
 func InitMapperByLocalSession() ExampleActivityMapperImpl {
