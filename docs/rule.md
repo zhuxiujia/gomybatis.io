@@ -24,8 +24,7 @@ xml文件案例:
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd">
 <mapper>
-    <!-- SelectByCondition func(arg SelectByConditionArg, result *[]model.Activity) error -->
-    <!-- 后台查询产品 -->
+    <!-- 查询活动数据集，if表达式里的 != '' 表示 判断参数是否为golang 零值 -->
     <select id="SelectByCondition" >
         select
         <trim prefix="" suffix="" suffixOverrides=",">
