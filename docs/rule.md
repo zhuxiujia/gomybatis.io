@@ -1,5 +1,4 @@
 # 限制和规则
-
 # 定义mapper
 ```
 type ActivityMapperImpl struct {
