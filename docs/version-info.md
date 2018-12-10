@@ -1,3 +1,7 @@
+
+> 全部版本链接 https://github.com/zhuxiujia/GoMybatis/releases
+
+
 > v1.4  修改mapper方法定义协议，error和return数据都放到函数尾部
 
 > v1.3  加入<choose><when><otherwise> 标签支持
