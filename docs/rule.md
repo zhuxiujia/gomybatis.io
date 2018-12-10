@@ -1,5 +1,10 @@
 ## 限制和规则
 ### 定义mapper
+* func 名称必须是可导出的，首字母大写（xml中首字母可小写，框架可忽略xml中的函数名大小写）
+* 其中 func 返回值必须有一个error
+* 多个基本类型参数请tag注解  `mapperParams:"*,*,*"`,逗号隔开，参数对应xml中出现的‘#{*}’字段
+* 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
+* 如果xml没有出现struct定义的func，框架会在扫描阶段 painc，并且提示缺少实现的 函数名称
 ```
 type ActivityMapperImpl struct {
 //定义mapper文件的接口和结构体，也可以只定义结构体就行
@@ -15,15 +20,11 @@ type ActivityMapperImpl struct {
 }
 ```
 
-* func 名称必须是可导出的，首字母大写（xml中首字母可小写，框架可忽略xml中的函数名大小写）
-* 其中 func 返回值必须有一个error
-* 多个基本类型参数请tag注解  `mapperParams:"*,*,*"`,逗号隔开，参数对应xml中出现的‘#{*}’字段
-* 参数中如果传入 *GoMybatis.Session，框架则使用该session，否则框架将新建一个session操作数据库
-* 如果xml没有出现struct定义的func，框架会在扫描阶段 painc，并且提示缺少实现的 函数名称
-
 ### 定义Mapper xml
-xml文件案例:
-```xml
+* if表达式判断参数是否0值，注意 time.Time的零值为0，日期和数值的零值为0，string的零值为''
+* 对于"<，>" 符号可能需要转义字符，例如 '<' 对应 '&lt';
+* 为了正常显示dtd定义xml智能提示，推荐使用GoLand或者intellij idea打开和编辑xml文件。dtd链接请指向例子中的 "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd"
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd"
@@ -50,7 +51,3 @@ xml文件案例:
     </select>
 </mapper>
 ```
-
-* if表达式判断参数是否0值，注意 time.Time的零值为0，日期和数值的零值为0，string的零值为''
-* 对于"<，>" 符号可能需要转义字符，例如 '<' 对应 '&lt';
-* 为了正常显示dtd定义xml智能提示，推荐使用GoLand或者intellij idea打开和编辑xml文件。dtd链接请指向例子中的 "https://raw.githubusercontent.com/zhuxiujia/GoMybatis/master/mybatis-3-mapper.dtd"
