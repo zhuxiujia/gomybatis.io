@@ -150,9 +150,8 @@
            Id:   "170",
            Name: "rs168-8",
         }
-        var updateNum int64 = 0
         //session 传值则使用已经创建的session，否则新建一个session
-        var e = exampleActivityMapperImpl.UpdateById(&session, activityBean, &updateNum)
+        var updateNum , e = exampleActivityMapperImpl.UpdateById(&session, activityBean)
         fmt.Println("updateNum=", updateNum)
         if e != nil {
            panic(e)
