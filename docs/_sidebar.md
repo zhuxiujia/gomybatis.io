@@ -1,7 +1,7 @@
 - [首页-Home](/README)
 - [网站-WebSite](https://zhuxiujia.github.io/gomybatis.io/info.html)
-- [动态SQL-DynamicSql](/dynamic-sql)
 - [安装使用-Installation](/getting-started)
+  - [动态SQL-DynamicSql](/dynamic-sql)
   - [增删改查-CRUD](/crud)
   - [基本使用-UseDefault](/use-def)
   - [本地事务-LocalTransaction](/use-tx-local)
