@@ -158,3 +158,26 @@ bind 元素可以从 govaluate表达式中创建一个变量并将其绑定到�
   WHERE title LIKE #{pattern}
 </select>
 ```
+## sql,include
+sql 元素可以创建一段逻辑判断或者sql并将其绑定到上下文,从而复用许多重复的逻辑片段。比如：
+```
+ <sql id="links"> pc_link,h5_link </sql>
+ <select id="selectLinks">
+        select
+        <include refid="links"/>
+        from biz_activity where delete_flag = 1
+    </select>
+```
+你也可以加入例如if，foreach,trim,choose, when, otherwise...等等 你需要的逻辑标签
+```
+ <sql id="links">
+     pc_link,h5_link
+     <!-- select ....  from 中,需要不启用TypeConvert的话，使用${} 而不是 #{},否则传入column 会被类型转换器转换为带有'符号的'column'而不是 column -->
+     <if test="column != ''">,${column}</if>
+ </sql>
+ <select id="selectLinks">
+        select
+        <include refid="links"/>
+        from biz_activity where delete_flag = 1
+    </select>
+```
