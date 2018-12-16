@@ -79,7 +79,7 @@
                     <v-card-text>
                       <p>学习成本低,一次学会可在go和java中使用,脱离代码松耦合(符合企业规范)，维护优化方便</p>
                       <ul>
-                        <li>-支持逻辑标签 resultMap,select,update,insert,delete,trim,if,set,foreach,bind </li>
+                        <li>-支持逻辑标签 resultMap,select,update,insert,delete,trim,if,set,foreach,bind,sql,include </li>
                         <li>-和ORM框架Xorm,Gorm比较，此框架有各自的查询规则学习成本高，Xorm <code>engine.Asc("id").Desc("time").Find(&orders)</code>和Gorm<code>db.First(&user).Limit(10).Find(&users).GetErrors()</code></li>
                         <li>-和ORM框架GoBatis比较，此框架使用注释(//@select *)标记xml，需要中间代码（生成***.go代码文件）执行查询操作。而GoMybatis只需xml定义Struct方法,无需中间代码</li>
                       </ul>
