@@ -6,7 +6,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 虽然在以前使用动态 SQL 并非一件易事，但正是GoMyBatis 提供了可以被用在任意 SQL 映射语句中的强大的动态 SQL 语言得以改进这种情形。
 
      
-动态 SQL 元素和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多元素需要花时间了解。GoMyBatis 大大精简了元素种类，现在只需学习原来一半的元素便可。GoMyBatis 采用功能强大的基于 govaluate 的表达式来淘汰其它大部分元素。
+动态 SQL 标签和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多标签需要花时间了解。GoMyBatis 大大精简了标签种类，现在只需学习原来一半的标签便可。GoMyBatis 采用功能强大的基于 govaluate 的表达式来淘汰其它大部分标签。
 
 * if
 * choose (when, otherwise)
@@ -38,7 +38,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 </select>
 ```
 ## choose, when, otherwise 
-有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，GoMyBatis 提供了 choose 元素，它有点像 Golang / Java 中的 switch 语句。
+有时我们不想应用到所有的条件语句，而只想从中择其一项。针对这种情况，GoMyBatis 提供了 choose 标签，它有点像 Golang / Java 中的 switch 语句。
 还是上面的例子，但是这次变为提供了“title”就按“title”查找，提供了“author”就按“author”查找的情形，若两者都没有提供，就返回所有符合条件的 BLOG（实际情况可能是由管理员按一定策略选出 BLOG 列表，而不是返回大量无意义的随机结果）。
 ```
 <select id="findActiveBlogLike"
@@ -104,15 +104,15 @@ GoMyBatis 有一个简单的处理，这在 90% 的情况下都会有用。而�
   </where>
 </select>
 ```
-where 元素只会在至少有一个子元素的条件返回 SQL 子句的情况下才去插入“WHERE”子句。而且，若语句的开头为“AND”或“OR”，where 元素也会将它们去除。
-如果 where 元素没有按正常套路出牌，我们可以通过自定义 trim 元素来定制 where 元素的功能。比如，和 where 元素等价的自定义 trim 元素为：
+where 标签只会在至少有一个子标签的条件返回 SQL 子句的情况下才去插入“WHERE”子句。而且，若语句的开头为“AND”或“OR”，where 标签也会将它们去除。
+如果 where 标签没有按正常套路出牌，我们可以通过自定义 trim 标签来定制 where 标签的功能。比如，和 where 标签等价的自定义 trim 标签为：
 ```
 <trim prefix="WHERE" prefixOverrides="AND |OR ">
   ... 
 </trim>
 ```
 prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例中的空格也是必要的）。它的作用是移除所有指定在 prefixOverrides 属性中的内容，并且插入 prefix 属性中指定的内容。
-类似的用于动态更新语句的解决方案叫做 set。set 元素可以用于动态包含需要更新的列，而舍去其它的。比如：
+类似的用于动态更新语句的解决方案叫做 set。set 标签可以用于动态包含需要更新的列，而舍去其它的。比如：
 ```
 <update id="updateAuthorIfNecessary">
   update Author
@@ -125,8 +125,8 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
   where id=#{id}
 </update>
 ```
-这里，set 元素会动态前置 SET 关键字，同时也会删掉无关的逗号，因为用了条件语句之后很可能就会在生成的 SQL 语句的后面留下这些逗号。（译者注：因为用的是“if”元素，若最后一个“if”没有匹配上而前面的匹配上，SQL 语句的最后就会有一个逗号遗留）  
-若你对 set 元素等价的自定义 trim 元素的代码感兴趣，那这就是它的真面目：
+这里，set 标签会动态前置 SET 关键字，同时也会删掉无关的逗号，因为用了条件语句之后很可能就会在生成的 SQL 语句的后面留下这些逗号。（译者注：因为用的是“if”标签，若最后一个“if”没有匹配上而前面的匹配上，SQL 语句的最后就会有一个逗号遗留）  
+若你对 set 标签等价的自定义 trim 标签的代码感兴趣，那这就是它的真面目：
 ```
 <trim prefix="SET" suffixOverrides=",">
   ...
@@ -146,11 +146,11 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
   </foreach>
 </select>
 ```
-foreach 元素的功能非常强大，它允许你指定一个集合，声明可以在元素体内使用的集合项（item）和索引（index）变量。它也允许你指定开头与结尾的字符串以及在迭代结果之间放置分隔符。这个元素是很智能的，因此它不会偶然地附加多余的分隔符。
-注意 你可以将任何可迭代对象（如 slice、array 等）、Map 对象或者数组对象传递给 foreach 作为集合参数。当使用可迭代对象或者数组时，index 是当前迭代的次数，item 的值是本次迭代获取的元素。当使用 Map 对象（或者 Map.Entry 对象的集合）时，index 是键，item 是值。
+foreach 标签的功能非常强大，它允许你指定一个集合，声明可以在标签体内使用的集合项（item）和索引（index）变量。它也允许你指定开头与结尾的字符串以及在迭代结果之间放置分隔符。这个标签是很智能的，因此它不会偶然地附加多余的分隔符。
+注意 你可以将任何可迭代对象（如 slice、array 等）、Map 对象或者数组对象传递给 foreach 作为集合参数。当使用可迭代对象或者数组时，index 是当前迭代的次数，item 的值是本次迭代获取的标签。当使用 Map 对象（或者 Map.Entry 对象的集合）时，index 是键，item 是值。
 到此我们已经完成了涉及 XML 配置文件和 XML 映射文件的讨论。下一章将详细探讨 Golang API，这样就能提高已创建的映射文件的利用效率。
 ## bind
-bind 元素可以从 govaluate表达式中创建一个变量并将其绑定到上下文。比如：
+bind 标签可以从 govaluate表达式中创建一个变量并将其绑定到上下文。比如：
 ```
 <select id="selectBlogsLike" >
   <bind name="pattern" value="'%' + name + '%'" />
@@ -159,7 +159,7 @@ bind 元素可以从 govaluate表达式中创建一个变量并将其绑定到�
 </select>
 ```
 ## sql,include
-sql 元素可以创建一段逻辑判断或者sql并将其绑定到上下文,从而复用许多重复的逻辑片段。比如：
+sql 标签可以创建一段逻辑判断或者sql并将其绑定到上下文,从而复用许多重复的逻辑片段。比如：
 ```
  <sql id="links"> pc_link,h5_link </sql>
  <select id="selectLinks">
