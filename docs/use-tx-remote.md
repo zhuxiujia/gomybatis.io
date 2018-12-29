@@ -52,9 +52,9 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 
 //远程事务示例，可用于分布式微服务(单数据库，多个微服务)
 func Test_Remote_Transation(t *testing.T) {
-	//启动GoMybatis独立节点事务服务器，通过rpc调用
+  //启动GoMybatis独立节点事务服务器，通过rpc调用
 	var remoteAddr = "127.0.0.1:17235"
-	go GoMybatis.ServerTransationTcp(remoteAddr, MysqlDriverName, MysqlUri)
+	go GoMybatis.ServerTransationTcp(remoteAddr, "mysql", MysqlUri)
 
 	//开始使用
 	//初始化mapper文件
@@ -64,7 +64,7 @@ func Test_Remote_Transation(t *testing.T) {
 	var transationRMSession = GoMybatis.DefaultSessionFactory.NewSession(GoMybatis.SessionType_TransationRM, &GoMybatis.TransationRMClientConfig{
 		Addr:          remoteAddr,
 		RetryTime:     3,
-		TransactionId: "",
+		TransactionId: "12345678",
 		Status:        GoMybatis.Transaction_Status_NO,
 	})
 
@@ -82,6 +82,8 @@ func Test_Remote_Transation(t *testing.T) {
 	//提交远程事务
 	transationRMSession.Commit()
 	//回滚远程事务
-	//transationRMSession.Rollback()
+    //transationRMSession.Rollback()
+
+   transationRMSession.Close()
 }
 ```
