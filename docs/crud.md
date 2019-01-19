@@ -198,7 +198,9 @@ func Test_select(t *testing.T) {
 	//初始化mapper文件
 	var exampleActivityMapperImpl = InitMapperByLocalSession()
 	//使用mapper
-	var result, err = exampleActivityMapperImpl.SelectByCondition("", time.Time{}, time.Time{}, 0, 2000)
+	//使用mapper
+    var name = "注册"
+    var result, err = exampleActivityMapper.SelectByCondition(&name, nil,nil,nil,nil)
 	if err != nil {
 		panic(err)
 	}
