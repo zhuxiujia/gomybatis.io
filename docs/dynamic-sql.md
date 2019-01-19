@@ -19,7 +19,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 <select id="findActiveBlogWithTitleLike">
   SELECT * FROM BLOG 
   WHERE state = ‘ACTIVE’ 
-  <if test="title != ''">
+  <if test="title != nil">
     AND title like #{title}
   </if>
 </select>
@@ -29,10 +29,10 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 ```
 <select id="findActiveBlogLike">
   SELECT * FROM BLOG WHERE state = ‘ACTIVE’ 
-  <if test="title != ''">
+  <if test="title != nil">
     AND title like #{title}
   </if>
-  <if test="author != '' and author.name != ''">
+  <if test="author != nil and author.name != nil">
     AND author_name like #{author.name}
   </if>
 </select>
@@ -45,10 +45,10 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
      >
   SELECT * FROM BLOG WHERE state = ‘ACTIVE’
   <choose>
-    <when test="title != ''">
+    <when test="title != nil">
       AND title like #{title}
     </when>
-    <when test="author != '' and author.name != ''">
+    <when test="author != nil and author.name != nil">
       AND author_name like #{author.name}
     </when>
     <otherwise>
@@ -64,13 +64,13 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
      >
   SELECT * FROM BLOG 
   WHERE 
-  <if test="state != ''">
+  <if test="state != nil">
     state = #{state}
   </if> 
-  <if test="title != ''">
+  <if test="title != nil">
     AND title like #{title}
   </if>
-  <if test="author != '' and author.name != ''">
+  <if test="author != nil and author.name != nil">
     AND author_name like #{author.name}
   </if>
 </select>
@@ -92,13 +92,13 @@ GoMyBatis 有一个简单的处理，这在 90% 的情况下都会有用。而�
 <select id="findActiveBlogLike">
   SELECT * FROM BLOG 
   <where> 
-    <if test="state != ''">
+    <if test="state != nil">
          state = #{state}
     </if> 
-    <if test="title != ''">
+    <if test="title != nil">
         AND title like #{title}
     </if>
-    <if test="author != '' and author.name != ''">
+    <if test="author != nil and author.name != nil">
         AND author_name like #{author.name}
     </if>
   </where>
@@ -117,10 +117,10 @@ prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例�
 <update id="updateAuthorIfNecessary">
   update Author
     <set>
-      <if test="username != ''">username=#{username},</if>
-      <if test="password != ''">password=#{password},</if>
-      <if test="email != ''">email=#{email},</if>
-      <if test="bio != ''">bio=#{bio}</if>
+      <if test="username != nil">username=#{username},</if>
+      <if test="password != nil">password=#{password},</if>
+      <if test="email != nil">email=#{email},</if>
+      <if test="bio != nil">bio=#{bio}</if>
     </set>
   where id=#{id}
 </update>
@@ -173,7 +173,7 @@ sql 标签可以创建一段逻辑判断或者sql并将其绑定到上下文,从
  <sql id="links">
      pc_link,h5_link
      <!-- select ....  from 中,需要不启用TypeConvert的话，使用${} 而不是 #{},否则传入column 会被类型转换器转换为带有'符号的'column'而不是 column -->
-     <if test="column != ''">,${column}</if>
+     <if test="column != nil">,${column}</if>
  </sql>
  <select id="selectLinks">
         select
