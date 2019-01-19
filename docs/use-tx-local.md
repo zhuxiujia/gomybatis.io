@@ -20,7 +20,7 @@ import (
 type ExampleActivityMapperImpl struct {
 		SelectByIds       func(ids []string) ([]Activity, error)                                                            `mapperParams:"ids"`
     	SelectAll         func() ([]Activity, error)
-    	SelectByCondition func(name string, startTime time.Time, endTime time.Time, page int, size int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
+    	SelectByCondition func(name *string, startTime *time.Time, endTime *time.Time, page *int, size *int) ([]Activity, error) `mapperParams:"name,startTime,endTime,page,size"`
     	UpdateById        func(session *GoMybatis.Session, arg Activity) (int64, error) //参数中包含有*GoMybatis.Session的类型，用于自定义事务
     	Insert            func(arg Activity) (int64, error)
     	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
