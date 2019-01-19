@@ -6,7 +6,7 @@ GoMyBatis 的强大特性之一便是它的动态 SQL。如果你有使用 JDBC 
 虽然在以前使用动态 SQL 并非一件易事，但正是GoMyBatis 提供了可以被用在任意 SQL 映射语句中的强大的动态 SQL 语言得以改进这种情形。
 
      
-动态 SQL 标签和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多标签需要花时间了解。GoMyBatis 大大精简了标签种类，现在只需学习原来一半的标签便可。GoMyBatis 采用功能强大的基于 govaluate 的表达式来淘汰其它大部分标签。
+动态 SQL 标签和 JSTL 或基于类似 XML 的文本处理器相似。在GoMyBatis 之前的版本中，有很多标签需要花时间了解。GoMyBatis 大大精简了标签种类，现在只需学习原来一半的标签便可。GoMyBatis 采用功能强大的基于expr/govaluate/gojee 的3种表达式来淘汰其它大部分标签。
 
 ## 新版框架使用github.com/antonmedv/expr 表达式引擎,函数可传递指针值，表达式title != nil和title != null都是支持的。以下都用nil代替
 
