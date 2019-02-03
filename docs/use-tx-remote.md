@@ -26,6 +26,9 @@ type ExampleActivityMapperImpl struct {
     	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
     	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
     	Choose            func(deleteFlag int) ([]Activity, error)                                                          `mapperParams:"deleteFlag"`
+    	//新建session方法,  参数：config，传nil为本地session,传值则为远程 remote session
+        NewSession func(config *GoMybatis.TransationRMClientConfig) (GoMybatis.Session, error)
+        //NewSession      func() (GoMybatis.Session, error)    //NewSession也可以无参数写法
 }
 
 //初始化mapper文件和结构体
@@ -61,7 +64,7 @@ func Test_Remote_Transation(t *testing.T) {
 	var exampleActivityMapperImpl = InitMapperByLocalSession()
 
 	//关键，使用远程Session替换本地Session调用
-	var transationRMSession = GoMybatis.DefaultSessionFactory.NewSession(GoMybatis.SessionType_TransationRM, &GoMybatis.TransationRMClientConfig{
+	var transationRMSession = exampleActivityMapper.NewSession(GoMybatis.SessionType_TransationRM, &GoMybatis.TransationRMClientConfig{
 		Addr:          remoteAddr,
 		RetryTime:     3,
 		TransactionId: "12345678",

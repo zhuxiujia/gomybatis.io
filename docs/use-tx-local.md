@@ -26,6 +26,10 @@ type ExampleActivityMapperImpl struct {
     	CountByCondition  func(name string, startTime time.Time, endTime time.Time) (int, error)                            `mapperParams:"name,startTime,endTime"`
     	DeleteById        func(id string) (int64, error)                                                                    `mapperParams:"id"`
     	Choose            func(deleteFlag int) ([]Activity, error)                                                          `mapperParams:"deleteFlag"`
+    	
+    	//新建session方法,  参数：config，传nil为本地session,传值则为远程 remote session
+        NewSession func(config *GoMybatis.TransationRMClientConfig) (GoMybatis.Session, error)
+        //NewSession      func() (GoMybatis.Session, error)    //NewSession也可以无参数写法
 }
 
 
@@ -55,15 +59,19 @@ func InitMapperByLocalSession() ExampleActivityMapperImpl {
 func Test_local_Transation(t *testing.T) {
 	//初始化mapper文件
 	exampleActivityMapperImpl := InitMapperByLocalSession()
+	
 	//使用事务
-	var session = GoMybatis.DefaultSessionFactory.NewSession(GoMybatis.SessionType_Default, nil)
-	session.Begin() //开启事务
-	var activityBean = Activity{
-		Id:   "170",
-		Name: "rs168-8",
-	}
-	var updateNum, e = exampleActivityMapperImpl.UpdateById(&session, activityBean) //sessionId 有值则使用已经创建的session，否则新建一个session
-	fmt.Println("updateNum=", updateNum)
+    var session, err = exampleActivityMapper.NewSession(nil)
+    if err != nil {
+    	t.Fatal(err)
+    }
+    session.Begin() //开启事务
+    var activityBean = Activity{
+    	Id:   "170",
+    	Name: "rs168-8",
+    }
+    var updateNum, e = exampleActivityMapper.UpdateById(&session, activityBean) //sessionId 有值则使用已经创建的session，否则新建一个session
+    fmt.Println("updateNum=", updateNum)
 	if e != nil {
 		panic(e)
 	}
