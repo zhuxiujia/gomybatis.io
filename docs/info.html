@@ -148,7 +148,7 @@
       <v-layout column align-center justify-center>
       <code>
         //事务
-        session :=  exampleActivityMapper.NewSession(GoMybatis.SessionType_Default, nil)
+        session :=  exampleActivityMapper.NewSession()
         session.Begin() //开启事务
         var activityBean = Activity{
            Id:   "170",
