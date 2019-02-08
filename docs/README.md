@@ -85,19 +85,22 @@ type ExampleActivityMapperImpl struct {
 }
 
 func main() {
-	var err error
-	//mysql链接格式为         用户名:密码@(数据库链接地址:端口)/数据库名称   例如root:123456@(***.mysql.rds.aliyuncs.com:3306)/test
-	engine, err := GoMybatis.Open("mysql", "*?charset=utf8&parseTime=True&loc=Local") //此处请按格式填写你的mysql链接，这里用*号代替
+	var engine = GoMybatis.GoMybatisEngine{}.New()
+	//Mysql link format user name: password @ (database link address: port)/database name, such as root: 123456 @(***.com: 3306)/test
+	err := engine.Open("mysql", "*?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic(err.Error())
+	   panic(err)
 	}
 	var exampleActivityMapperImpl ExampleActivityMapperImpl
-	//挂载mapper xml内容
-	GoMybatis.WriteMapperPtrByEngine(&exampleActivityMapperImpl, xmlBytes, engine, true)
+	
+	//Loading XML implementation logic to ExampleActivity Mapper Impl
+	engine.WriteMapperPtr(&exampleActivityMapperImpl, xmlBytes)
 
-	//使用mapper
-    result,error:=exampleActivityMapperImpl.SelectAll(&result)
-    fmt.Println(error)
+	//Using mapper
+	result, err := exampleActivityMapperImpl.SelectAll(&result)
+        if err != nil {
+	   panic(err)
+	}
 	fmt.Println(result)
 }
 ```

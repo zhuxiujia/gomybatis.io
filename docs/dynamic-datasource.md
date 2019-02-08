@@ -5,18 +5,21 @@
 
 >  1多数据源：
 ```
+//初始化引擎
+var engine = GoMybatis.GoMybatisEngine{}.New()
+
 //第一个数据源
-engine, err := GoMybatis.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
+err := engine.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
 	if err != nil {
 		panic(err.Error())
 	}
 //第二个数据源
-_, err := GoMybatis.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
+err := engine.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
 	if err != nil {
 		panic(err.Error())
 	}
 //第三个数据源
-_, err := GoMybatis.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
+err := engine.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链接，这里用*号代替
 	if err != nil {
 		panic(err.Error())
 	}
