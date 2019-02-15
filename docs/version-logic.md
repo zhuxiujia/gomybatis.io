@@ -12,9 +12,9 @@
 
 ### 逻辑删除 主要适用场景
 意图：
-0、需要保证数据绝对不丢失的
-1、如果真的删除，会对其他数据带来严重的后果的。
-2、金融应用，大数据分布式应用，无所谓容量只要确保数据安全的。
+* 0、需要保证数据绝对不丢失的
+* 1、如果真的删除，会对其他数据带来严重的后果的。
+* 2、金融应用，大数据分布式应用，无所谓容量只要确保数据安全的。
 
 逻辑删除实现方式：
 将对应数据中代表是否被删除字段状态修改为“被删除状态”，之后在数据库中仍旧能看到此条数据记录。
@@ -39,7 +39,7 @@
         <result column="delete_flag" property="deleteFlag" langType="int" logic_enable="true" logic_undelete="1" logic_deleted="0"/>
     </resultMap>
 ```
->2 确保使用的是模板标签 Templete，而不是insert，update，delete，select.例如：
+>2 确保使用的是模板标签例如：
 
 ```
     <insertTemplete tables="biz_activity" />
