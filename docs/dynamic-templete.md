@@ -37,18 +37,18 @@ type ExampleActivityMapper struct {
 <insertTemplete tables="biz_activity" />
 ```
 
-> UpdateTemplete 修改，支持乐观锁，逻辑删除绑定deleteFlag=1（在resultMap中指定）
+> UpdateTemplete 修改，支持乐观锁，逻辑删除绑定deleteFlag=1（在resultMap中指定），wheres,sets可以用英文逗号隔开
 
 ```
 sets值可以为*?*,那么生成的sql为 <if test="name!=null">#{name}</>
 <updateTemplete tables="biz_activity" sets="name?name = #{name}" wheres="name?name = #{name}"/>
 ```
-> SelectTemplete 查询
+> SelectTemplete 查询，wheres可以用英文逗号隔开
 
 ```
 <selectTemplete tables="biz_activity" wheres="name?name = #{name}" columns=""/>
 ```
-> deleteTemplete 删除
+> deleteTemplete 删除，wheres可以用英文逗号隔开
 
 ```
 <deleteTemplete tables="biz_activity" wheres="name?name = #{name}"/>
