@@ -22,6 +22,7 @@
 ## 乐观锁和逻辑删除 配置使用步骤
 
 > 1 确保mapper 内容中含有resultMap：
+
 ```
     <!--logic_enable 逻辑删除字段-->
     <!--logic_deleted 逻辑删除已删除字段-->
@@ -39,6 +40,7 @@
     </resultMap>
 ```
 >2 确保使用的是模板标签 <*Templete>，而不是<insert><update><delete><select>.例如：
+
 ```
     <insertTemplete tables="biz_activity" />
     <insertTemplete tables="biz_activity" id="InsertTempleteBatch"/>
@@ -48,6 +50,7 @@
 ```
 
 >相关配置完成后，updateTemplete生成的sql例如以下内容：
+
 ```
 update set name = 'rs168',version = 1 from biz_activity where name = 'rs168' and delete_flag = 1 and version = 0
 ```
