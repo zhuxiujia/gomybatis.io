@@ -39,7 +39,7 @@
         <result column="delete_flag" property="deleteFlag" langType="int" logic_enable="true" logic_undelete="1" logic_deleted="0"/>
     </resultMap>
 ```
->2 确保使用的是模板标签 <*Templete>，而不是<insert><update><delete><select>.例如：
+>2 确保使用的是模板标签 Templete，而不是insert，update，delete，select.例如：
 
 ```
     <insertTemplete tables="biz_activity" />
