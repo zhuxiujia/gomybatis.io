@@ -3,7 +3,7 @@
 - [安装使用-Installation](/getting-started)
 - [动态SQL-DynamicSql](/dynamic-sql)
 - [模板标签(新)](/dynamic-templete)
-- [乐观锁、逻辑删除(新)](/version-logic)
+- [乐观锁和逻辑删除(新)](/version-logic)
 - [增删改查-CRUD](/crud)
 - [事务-LocalTransaction](/use-tx-local)
 - [远程事务(用于微服务)--RemoteTransaction](/use-tx-remote)
