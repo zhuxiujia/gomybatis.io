@@ -23,7 +23,7 @@ err := engine.Open("mysql", MysqlUri) //此处请按格式填写你的mysql链�
 	if err != nil {
 		panic(err.Error())
 	}
-...更多的数据库
+//更多的数据库
 ```
 
 
