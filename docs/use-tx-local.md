@@ -88,7 +88,7 @@ type TestService struct {
 	UpdateRemark func(id string, remark string) error `tx:"" rollback:"error"`
 }
 
-//初始化服务
+//初始化服务实现类（Impl）
 func init() {
 	var testService TestService
 	testService = TestService{
