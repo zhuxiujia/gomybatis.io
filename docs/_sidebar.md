@@ -7,7 +7,6 @@
  - [乐观锁和逻辑删除(新)](/version-logic)
  - [动态多数据源](/dynamic-datasource)
  - [事务-LocalTransaction](/use-tx-local)
- - [远程事务(用于微服务)](/use-tx-remote)
  - [规则和限制](/rule)
  - [原理示意图](/detail)
  - [版本说明](/version-info)

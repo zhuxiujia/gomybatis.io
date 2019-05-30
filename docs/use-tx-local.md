@@ -1,7 +1,6 @@
 > 示例源码https://github.com/zhuxiujia/GoMybatis/tree/master/example
 
-
-本地事务
+普通事务
 ```
 import (
 	_ "github.com/go-sql-driver/mysql"
@@ -72,5 +71,80 @@ func Test_local_Transation(t *testing.T) {
 	session.Commit() //提交事务
 	session.Close()  //关闭事务
 }
+
+```
+
+
+AOP事务（嵌套事务/带有传播行为的事务）
+```
+//定义服务
+type TestService struct {
+	exampleActivityMapper *ExampleActivityMapper //服务包含一个mapper操作数据库，类似java spring mvc
+
+	//类似拷贝spring MVC的声明式事务注解
+	//rollback:回滚操作为error类型(你也可以自定义实现了builtin.error接口的自定义struct，框架会把自定义的error类型转换为string，检查是否包含，是则回滚
+	//tx:"" 开启事务，`tx:"PROPAGATION_REQUIRED,error"` 指定传播行为为REQUIRED(默认REQUIRED))
+	UpdateName   func(id string, name string) error   `tx:"" rollback:"error"`
+	UpdateRemark func(id string, remark string) error `tx:"" rollback:"error"`
+}
+
+//初始化服务
+func init() {
+	var testService TestService
+	testService = TestService{
+		exampleActivityMapper: &exampleActivityMapper,
+		UpdateRemark: func(id string, remark string) error {
+			var activitys, err = testService.exampleActivityMapper.SelectByIds([]string{id})
+			if err != nil {
+				panic(err)
+			}
+			//TODO 此处可能会因为activitys长度为0 导致数组越界 painc,painc 为运行时异常 框架自动回滚事务
+			var activity = activitys[0]
+			activity.Remark = remark
+			updateNum, err := testService.exampleActivityMapper.UpdateTemplete(activity)
+			if err != nil {
+				panic(err)
+			}
+			println("UpdateRemark:", updateNum)
+			if id == "167" {
+				return errors.New("e")
+			}
+			return nil
+		},
+		UpdateName: func(id string, name string) error {
+			var activitys, err = testService.exampleActivityMapper.SelectByIds([]string{id})
+			if err != nil {
+				panic(err)
+			}
+			var activity = activitys[0]
+			activity.Name = name
+			updateNum, err := testService.exampleActivityMapper.UpdateTemplete(activity)
+			if err != nil {
+				panic(err)
+			}
+			println("UpdateName:", updateNum)
+			testService.UpdateRemark("172", "p2")
+			testService.UpdateRemark("167", "p1")
+			return nil
+		},
+	}
+	GoMybatis.AopProxyService(&testService, &engine)
+}
+
+
+//嵌套事务/带有传播行为的事务
+func TestTestService(t *testing.T) {
+	if MysqlUri == "" || MysqlUri == "*" {
+		fmt.Println("no database url define in MysqlConfig.go , you must set the mysql link!")
+		return
+	}
+	var testService = initTestService()
+
+	//go testService.UpdateName("167", "updated name1")
+	testService.UpdateName("167", "updated name2")
+
+	time.Sleep(3 * time.Second)
+}
+
 
 ```
