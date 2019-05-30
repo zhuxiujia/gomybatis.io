@@ -75,7 +75,7 @@ func Test_local_Transation(t *testing.T) {
 ```
 
 
-AOP事务（嵌套事务/带有传播行为的事务）
+AOP事务-用户只需关注业务逻辑框架自动处理回滚（嵌套事务/带有传播行为的事务）
 ```
 //定义服务
 type TestService struct {
