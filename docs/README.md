@@ -11,7 +11,6 @@ https://zhuxiujia.github.io/gomybatis.io/info.html
 -**动态SQL**，在xml中可灵活运用if判断，foreach遍历数组，resultMap,bind等等java框架Mybatis包含的实用功能<br>
 -**无需生成.go等等中间代码**，xml读取后可直接写入到自定义的Struct,Func属性中调用函数<br>
 ### 已支持绝大部分标签
-### 已支持本地和远程事务,方便处于 单数据库(Mysql,postgresql)-分布式数据库（TiDB,cockroachdb...）过渡期间的微服务
 ![Image text](https://zhuxiujia.github.io/gomybatis.io/assets/tx.png)
 ### 异步消息队列日志
 ![Image text](https://zhuxiujia.github.io/gomybatis.io/assets/log_system.png)
