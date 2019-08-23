@@ -1,5 +1,4 @@
 - [首页](/README)
-- [网站](https://zhuxiujia.github.io/gomybatis.io/info.html)
  - [下载/安装](/getting-started)
  - [动态SQL](/dynamic-sql)
  - [CRUD增删改查](/crud)

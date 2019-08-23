@@ -1,5 +1,3 @@
-# 事务原理
-![Image text](https://zhuxiujia.github.io/gomybatis.io/assets/tx.png)
 ## mapper(Struct)代理原理
 <pre>
 type ActivityMapperImpl struct {
