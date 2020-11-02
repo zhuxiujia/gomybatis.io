@@ -1,7 +1,7 @@
 # 高性能/高效率/可读性/功能齐备/优雅  的数据库sql orm mapper xml框架
 * 中文
 * [English](README-en.md) 
-* [文档](https://zhuxiujia.github.io/gomybatis.io/#/getting-started)
+* [文档](https://zhuxiujia.github.io/gomybatis.io/#/)
 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/zhuxiujia/GoMybatis)](https://goreportcard.com/report/github.com/zhuxiujia/GoMybatis)
